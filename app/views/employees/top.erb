@@ -1,0 +1,40 @@
+<div class="container">
+  
+  <div class="col-md-12 well">
+      <p id="notice"><%= notice %></p>
+
+<h1>Top 10 Salery Employess</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Salary</th>
+      
+      <th>Role</th>
+      <th>Report To</th>
+      
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= link_to  employee.id, employee_path(employee) %></td>
+        <td><%= employee.name %></td>
+        <td><%= employee.salary %></td>
+        <td><%= employee.role %></td>
+        <td><%= employee.report_to %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+  </div>
+</div>

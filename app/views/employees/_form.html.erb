@@ -1,0 +1,68 @@
+
+
+ <%= form_for(@employee) do |f|  %>
+        <% if @employee.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+            <ul>
+            <% @employee.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group row">
+          <%= f.label :EmpId, :class=>"col-sm-2 col-form-label"%>
+          <div class="col-sm-6">
+          <% if @employee[:id] %>
+              <%= f.text_field :id,:class => "required form-control",  :pattern=> "^[0-9]{1,6}$" , :placeholder=> "Please Enter 6 Digits NO" ,:disabled => "true"%></div>
+          <% else %>
+            <%= f.text_field :id,:class => "required form-control",  :pattern=> "^[0-9]{1,6}$" , :placeholder=> "Please Enter 6 Digits NO"%></div>
+          <% end %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :name, :class=>"col-sm-2 col-form-label" %>
+          <div class="col-sm-6"><%= f.text_field :name,:class => "required form-control", data: {
+      :validation => "required validate_max_length length50",
+      "validation-error-msg" => "This field is required and cannot be longer than 50 characters."
+    } %></div>
+
+        </div>
+        <div class="form-group row">
+          <%= f.label :salary, :class=>"col-sm-2 col-form-label" %>
+          <div class="col-sm-6"><%= f.text_field :salary,:class => "required form-control", :pattern=> "^[0-9]{1,10}$" %></div>
+        </div>
+        <!-- on change of field i need to get respective lovs for reportee list -->
+        <div class="form-group row">
+          <%= f.label :role, :class=>"col-sm-2 col-form-label" %>
+         <div class="col-sm-6"> <%#= f.select :role, options_for_select(["Select One", "VP", "Director", "Manager", "SDE"],:disabled => ["Select One"], {:class => 'form-control'}) %>
+           
+           <%= f.select(:role, options_for_select(["Select One", "VP", "Director", "Manager", "SDE"],:disabled => ["Select One"]), {}, {class: "required form-control"}) %>
+
+         </div>
+
+        </div>
+
+
+        <div class="form-group row">
+          <%= f.label :report_to, :class=>"col-sm-2 col-form-label" %>
+          <div class="col-sm-6"><%= f.text_field :report_to,:class => "required form-control",:pattern=> "^[0-9]{1,6}$", :placeholder=> "Please Enter 6 Digits NO" %></div>
+        </div>
+        <div class="actions">
+          <%= f.submit 'Save', :class => "btn btn-success" %>
+        </div>
+      <% end %>
+
+      <!-- <div class="form-group row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-6">
+      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-6">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+  </div> -->

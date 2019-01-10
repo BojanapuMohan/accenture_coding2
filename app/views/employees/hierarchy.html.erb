@@ -1,0 +1,42 @@
+<div class="container">
+  
+  <div class="col-md-12 well">
+      <p id="notice"><%= notice %></p>
+
+<h1>Hierarchy Employee</h1>
+
+
+
+  <% @arrayList  = hierarchy_list(@employees) %>
+  
+  <% @arrayList.each do |employee| %>
+    <% if !employee["report_to"] %>
+      <ul class="list-group">
+            <li class="list-group-item"><%= employee["name"] %> ( <%= employee["role"] %> )</li>
+            <li class="list-group-item">Two
+                <ul class="list-group">
+                    <li class="list-group-item">
+                      
+                      Chaild 
+
+                      <ul class="list-group">
+                    <li class="list-group-item">Item 2a</li>
+                    <li class="list-group-item">Item 2b</li>
+                </ul>
+                    </li>
+                    <li class="list-group-item">Item 2b</li>
+                </ul>
+            </li>
+            <li class="list-group-item">Three
+                <ul class="list-group">
+                    <li class="list-group-item">Item 3a</li>
+                    <li class="list-group-item">Item 3b</li>
+                </ul>
+            </li>
+    <% end %>
+
+  <% end %>
+
+<%#= link_to 'New Employee', new_employee_path, :class => "btn btn-primary"%>
+  </div>
+</div>
